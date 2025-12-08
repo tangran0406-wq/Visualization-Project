@@ -1,16 +1,21 @@
-
 import React, { useState, useEffect } from 'react';
 import { FoodItem, AppView, ComparisonAnalysis } from './types';
 import { generateCanteenMenu, analyzeComparison } from './services/geminiService';
+
+// --- 组件引入 ---
 import MenuCard from './components/MenuCard';
 import ComparisonChart from './components/ComparisonChart';
 import OverviewChart from './components/OverviewChart';
 import Sidebar from './components/Sidebar';
-import NewArrivals from './components/NewArrivals';
+// import NewArrivals from './components/NewArrivals'; // 原有的组件可以注释掉或删掉
 import TakeoutAnalysis from './components/TakeoutAnalysis';
 import CrowdSimulation from './components/CrowdSimulation';
 import WeeklyStory from './components/WeeklyStory';
 import DishRecommendations from './components/DishRecommendations';
+
+// --- 新增：引入刚才创建的可视化大屏组件 ---
+// 假设你把文件放在了 components/Dashboard/index.tsx
+import Dashboard from './components/Dashboard'; 
 
 const App: React.FC = () => {
     const [view, setView] = useState<AppView>(AppView.NUTRITION);
@@ -61,15 +66,19 @@ const App: React.FC = () => {
         setSelectedItems([]);
     };
 
+    // --- 修改了这里：将 Dashboard 放入渲染逻辑 ---
     const renderContent = () => {
         switch (view) {
-            case AppView.NEW_ARRIVALS: return <NewArrivals />;
+            // 这里将原本的 NewArrivals 替换为新的 Dashboard 组件
+            case AppView.NEW_ARRIVALS: 
+                return <Dashboard />;
+                
             case AppView.TAKEOUT_VS_CANTEEN: return <TakeoutAnalysis />;
             case AppView.CROWD_SIM: return <CrowdSimulation />;
             case AppView.WEEKLY_STORY: return <WeeklyStory />;
             case AppView.DISH_RECOMMENDATIONS: return <DishRecommendations />;
             default:
-                // Nutrition View
+                // Nutrition View (保持不变)
                 if (loading) return (
                     <div className="flex flex-col items-center justify-center h-96 space-y-4">
                         <div className="w-12 h-12 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
@@ -155,7 +164,9 @@ const App: React.FC = () => {
     return (
         <div className="flex flex-col md:flex-row min-h-screen">
             <Sidebar currentView={view} onViewChange={(v) => { setView(v); setCompareMode(false); }} />
-            <main className="flex-1 md:ml-64 p-4 md:p-8 bg-[#f3f4f6]">
+            {/* 注意：如果 Dashboard 内部自带了背景色或 padding，你可能需要移除这里的 padding 或 bg-[#f3f4f6] */}
+            {/* 为了适应全屏 Dashboard，我加了一个判断条件来移除 padding */}
+            <main className={`flex-1 md:ml-64 ${view === AppView.NEW_ARRIVALS ? 'p-0' : 'p-4 md:p-8'} bg-[#f3f4f6]`}>
                 {renderContent()}
             </main>
         </div>
