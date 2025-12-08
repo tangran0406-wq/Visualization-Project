@@ -9,28 +9,56 @@ import {
   PieChart, Pie
 } from 'recharts';
 
-// 直接内联窗口数据，无需外部文件
+// 直接内联窗口数据，无需外部文件（保留原有菜品 + 添加新菜品）
 const cafeteriaWindows = {
   south: {
     floor1: [
+      // 原有菜品
       { id: 1, name: "小笼包", rating: 4.8, popularity: 92, avgPrice: 6, waitTime: 8 },
-      { id: 2, name: "馋嘴砂锅", rating: 4.5, popularity: 85, avgPrice: 12, waitTime: 7 },
-      { id: 3, name: "辣椒炒肉", rating: 4.6, popularity: 78, avgPrice: 12, waitTime: 8 },
+      { id: 2, name: "馋嘴砂锅", rating: 4.5, popularity: 83, avgPrice: 12, waitTime: 7 },
+      { id: 3, name: "辣椒炒肉", rating: 4.6, popularity: 88, avgPrice: 12, waitTime: 8 },
       { id: 4, name: "三汁焖锅", rating: 4.6, popularity: 78, avgPrice: 12, waitTime: 9 },
+      // 新增菜品
+      { id: 5, name: "老友粉", rating: 4.7, popularity: 80, avgPrice: 12, waitTime: 6 },
+      { id: 6, name: "轻食套餐", rating: 4.5, popularity: 82, avgPrice: 15, waitTime: 8 },
+      { id: 7, name: "油泼面", rating: 4.8, popularity: 78, avgPrice: 12, waitTime: 5 },
+      { id: 8, name: "土豆泥拌面", rating: 4.6, popularity: 81, avgPrice: 13, waitTime: 7 },
+      { id: 9, name: "青岛风味", rating: 4.4, popularity: 75, avgPrice: 12, waitTime: 9 },
+      { id: 10, name: "紫薯芋泥年糕", rating: 4.9, popularity: 82, avgPrice: 10, waitTime: 6 },
+      { id: 11, name: "台湾卤肉饭", rating: 4.7, popularity: 89, avgPrice: 14, waitTime: 5 },
+      { id: 12, name: "鸡丝拌粉", rating: 4.6, popularity: 81, avgPrice: 12, waitTime: 7 },
     ],
     floor2: [
-      { id: 5, name: "重庆小面", rating: 4.7, popularity: 88, avgPrice: 13, waitTime: 5 },
-      { id: 6, name: "巴西烤肉饭", rating: 4.9, popularity: 95, avgPrice: 13, waitTime: 6 },
-      { id: 7, name: "羊肉烩面", rating: 4.6, popularity: 83, avgPrice: 13, waitTime: 5 },
-      { id: 8, name: "烧鸭饭", rating: 4.6, popularity: 78, avgPrice: 16, waitTime: 6 },
+      // 原有菜品
+      { id: 13, name: "重庆小面", rating: 4.7, popularity: 93, avgPrice: 13, waitTime: 9 },
+      { id: 14, name: "巴西烤肉饭", rating: 4.9, popularity: 95, avgPrice: 13, waitTime: 10 },
+      { id: 15, name: "羊肉烩面", rating: 4.6, popularity: 90, avgPrice: 13, waitTime: 9 },
+      { id: 16, name: "烧鸭饭", rating: 4.6, popularity: 88, avgPrice: 16, waitTime: 8 },
+      // 新增菜品
+      { id: 17, name: "茶香鸡米饭", rating: 4.8, popularity: 83, avgPrice: 15, waitTime: 6 },
+      { id: 18, name: "自选称重烤盘饭", rating: 4.7, popularity: 90, avgPrice: 18, waitTime: 10 },
+      { id: 19, name: "鸭血粉丝汤", rating: 4.6, popularity: 85, avgPrice: 10, waitTime: 7 },
+      { id: 20, name: "吊龙米线", rating: 4.9, popularity: 86, avgPrice: 15, waitTime: 6 },
+      { id: 21, name: "石锅拌饭", rating: 4.7, popularity: 88, avgPrice: 15, waitTime: 8 },
+      { id: 22, name: "沙茶面", rating: 4.5, popularity: 82, avgPrice: 12, waitTime: 7 },
+      { id: 23, name: "蜀香烤鱼饭", rating: 4.8, popularity: 89, avgPrice: 15, waitTime: 10 },
+      { id: 24, name: "京味小厨", rating: 4.6, popularity: 79, avgPrice: 15, waitTime: 8 },
+      { id: 25, name: "隆江猪肘饭", rating: 4.7, popularity: 83, avgPrice: 15, waitTime: 7 },
     ],
   },
   north: {
     floor1: [
-      { id: 9, name: "手工水饺", rating: 4.7, popularity: 82, avgPrice: 10, waitTime: 9 },
-      { id: 10, name: "台湾卤肉饭", rating: 4.6, popularity: 80, avgPrice: 12, waitTime: 5 },
-      { id: 11, name: "旋转小火锅", rating: 4.8, popularity: 90, avgPrice: 20, waitTime: 10 },
-      { id: 12, name: "麻辣香锅", rating: 4.6, popularity: 78, avgPrice: 15, waitTime: 8 },
+      // 原有菜品
+      { id: 26, name: "手工水饺", rating: 4.7, popularity: 92, avgPrice: 10, waitTime: 9 },
+      { id: 27, name: "台湾卤肉饭", rating: 4.6, popularity: 80, avgPrice: 12, waitTime: 5 },
+      { id: 28, name: "旋转小火锅", rating: 4.8, popularity: 84, avgPrice: 20, waitTime: 10 },
+      { id: 29, name: "麻辣香锅", rating: 4.6, popularity: 78, avgPrice: 16, waitTime: 8 },
+      // 新增菜品
+      { id: 30, name: "面面俱到", rating: 4.8, popularity: 91, avgPrice: 15, waitTime: 6 },
+      { id: 31, name: "四季稻香", rating: 4.6, popularity: 87, avgPrice: 15, waitTime: 7 },
+      { id: 32, name: "土豆泥拌饭", rating: 4.7, popularity: 90, avgPrice: 13, waitTime: 6 },
+      { id: 33, name: "小晨汤饼", rating: 4.5, popularity: 83, avgPrice: 13, waitTime: 8 },
+      { id: 34, name: "苏式面", rating: 4.8, popularity: 92, avgPrice: 15, waitTime: 7 },
     ],
   },
 };
@@ -80,9 +108,10 @@ const CanteenWindowRecommendations: React.FC = () => {
   // 窗口数据类型（内联定义，无需外部类型文件）
   type CanteenWindow = typeof cafeteriaWindows.south.floor1[0];
 
-  // 根据窗口名称返回对应的图标
+  // 根据窗口名称返回对应的图标（包含原有 + 新增菜品）
   const getWindowIcon = (name: string) => {
     const iconMap: Record<string, React.ReactNode> = {
+      // 原有菜品图标
       "小笼包": <span className="text-5xl">🥟</span>,
       "馋嘴砂锅": <span className="text-5xl">🍲</span>,
       "辣椒炒肉": <span className="text-5xl">🌶️</span>,
@@ -92,9 +121,29 @@ const CanteenWindowRecommendations: React.FC = () => {
       "羊肉烩面": <span className="text-5xl">🍜</span>,
       "烧鸭饭": <span className="text-5xl">🦆</span>,
       "手工水饺": <span className="text-5xl">🥟</span>,
-      "台湾卤肉饭": <span className="text-5xl">🍛</span>,
       "旋转小火锅": <span className="text-5xl">🍲</span>,
       "麻辣香锅": <span className="text-5xl">🌶️</span>,
+      // 新增菜品图标
+      "老友粉": <span className="text-5xl">🍜</span>,
+      "轻食套餐": <span className="text-5xl">🥗</span>,
+      "油泼面": <span className="text-5xl">🍜</span>,
+      "土豆泥拌面": <span className="text-5xl">🍝</span>,
+      "青岛风味": <span className="text-5xl">🦞</span>,
+      "紫薯芋泥年糕": <span className="text-5xl">🍠</span>,
+      "鸡丝拌粉": <span className="text-5xl">🍜</span>,
+      "茶香鸡米饭": <span className="text-5xl">🍗</span>,
+      "自选称重烤盘饭": <span className="text-5xl">🥘</span>,
+      "鸭血粉丝汤": <span className="text-5xl">🍲</span>,
+      "吊龙米线": <span className="text-5xl">🍜</span>,
+      "石锅拌饭": <span className="text-5xl">🍚</span>,
+      "沙茶面": <span className="text-5xl">🍜</span>,
+      "蜀香烤鱼饭": <span className="text-5xl">🐟</span>,
+      "京味小厨": <span className="text-5xl">🍲</span>,
+      "隆江猪肘饭": <span className="text-5xl">🍖</span>,
+      "面面俱到": <span className="text-5xl">🍜</span>,
+      "四季稻香": <span className="text-5xl">🌾</span>,
+      "小晨汤饼": <span className="text-5xl">🥟</span>,
+      "苏式面": <span className="text-5xl">🍜</span>,
     };
     return iconMap[name] || <Utensils className="w-16 h-16 text-indigo-500" />;
   };
@@ -137,7 +186,7 @@ const CanteenWindowRecommendations: React.FC = () => {
     return [
       { subject: '评分', value: item.rating * 20, fullMark: 100 },
       { subject: '人气', value: item.popularity, fullMark: 100 },
-      { subject: '性价比', value: (20 - item.avgPrice) * 10, fullMark: 100 },
+      { subject: '性价比', value: (25 - item.avgPrice) * 5, fullMark: 100 },
       { subject: '速度', value: (15 - item.waitTime) * 10, fullMark: 100 },
     ];
   };
@@ -211,14 +260,6 @@ const CanteenWindowRecommendations: React.FC = () => {
           </div>
         </div>
         
-        {/* 等待时间 */}
-        <div className="flex items-center text-sm text-gray-600 mb-4">
-          <span className="bg-amber-50 text-amber-600 px-3 py-1 rounded-full text-xs mr-2 flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            等待 {item.waitTime} 分钟
-          </span>
-        </div>
-        
         {/* 迷你雷达图 */}
         <div className="h-24 mb-3" key={`radar-${item.id}`}>
           <ResponsiveContainer width="100%" height="100%">
@@ -280,19 +321,19 @@ const CanteenWindowRecommendations: React.FC = () => {
             onClick={() => setActiveTab('southFirst')}
             className={`flex-1 px-6 py-3 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'southFirst' ? 'bg-indigo-50 text-indigo-600 shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}
           >
-            📍 南区一楼
+            📍 南区（曦园）一楼
           </button>
           <button
             onClick={() => setActiveTab('southSecond')}
             className={`flex-1 px-6 py-3 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'southSecond' ? 'bg-indigo-50 text-indigo-600 shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}
           >
-            📍 南区二楼
+            📍 南区（曦园）二楼
           </button>
           <button
             onClick={() => setActiveTab('northFirst')}
             className={`flex-1 px-6 py-3 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'northFirst' ? 'bg-indigo-50 text-indigo-600 shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}
           >
-            📍 北区一楼
+            📍 北区（晨园）
           </button>
         </div>
 
@@ -342,7 +383,7 @@ const CanteenWindowRecommendations: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-sm text-gray-500">窗口数量</div>
-                  <div className="text-2xl font-bold text-blue-600">{floorStats.windowCount}</div>
+                  <div className="text-2xl font-bold text-blue-600">20+</div>
                 </div>
               </div>
             </div>
@@ -437,7 +478,7 @@ const CanteenWindowRecommendations: React.FC = () => {
 
         {/* Footer */}
         <div className="text-center py-8 text-gray-400 text-sm">
-          <p>以上数据综合自「晨曦食记」公众号好评统计</p>
+          <p>以上数据综合自「晨曦食记」公众号与问卷调查统计</p>
         </div>
       </div>
     </ErrorBoundary>
