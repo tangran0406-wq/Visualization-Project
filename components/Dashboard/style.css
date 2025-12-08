@@ -1,0 +1,94 @@
+/* --- 基础样式变量 --- */
+:root {
+    --primary-color: #980a0e; 
+    --secondary-color: #7a080b;
+    --accent-color: #f0a500;
+    --light-color: #f8fafc;
+    --dark-color: #1e293b;
+    --text-color: #334155;
+    --border-radius: 12px;
+}
+
+/* 注意：移除了 body 选择器，改用 .dashboard-wrapper 包裹 */
+.dashboard-wrapper {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--light-color);
+    width: 100%;
+}
+
+/* 头部样式 */
+.dashboard-header { 
+    /* 如果你的项目有侧边栏，可能不需要 fixed top left 0 */
+    /* 这里暂时保留，你可能需要根据布局调整 position */
+    position: relative; 
+    width: 100%; 
+    background-color: var(--primary-color); 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    z-index: 100; 
+}
+
+.header-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; margin: 0 auto; }
+.logo h1 { font-size: 1.5rem; margin: 0; color: white; }
+.logo span { font-size: 0.9rem; color: var(--light-color); display: block; }
+.dashboard-nav ul { display: flex; list-style: none; }
+.dashboard-nav li { margin-left: 25px; }
+.dashboard-nav a { color: white; text-decoration: none; font-weight: 500; opacity: 0.9; }
+
+/* Hero */
+.hero-section { 
+    height: 300px; /* 稍微调小一点高度适应 React 布局 */
+    background: #333; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    text-align: center; 
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070'); 
+    background-size: cover; 
+    background-position: center; 
+    margin-bottom: -50px; 
+}
+.hero-content h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+
+/* 页面容器 */
+.page-container { max-width: 1200px; margin: 0 auto 40px; position: relative; z-index: 10; padding: 0 20px;}
+.section-card { background: white; border-radius: var(--border-radius); box-shadow: 0 8px 24px rgba(0,0,0,0.06); padding: 30px; margin-bottom: 30px; }
+.section-title { font-size: 1.5rem; border-left: 5px solid var(--primary-color); padding-left: 15px; margin-bottom: 25px; color: var(--dark-color); display: flex; justify-content: space-between; align-items: center;}
+
+/* --- 可视化图表区域样式 --- */
+.chart-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+.chart-box { height: 420px; background: #fff; border: 1px solid #f1f5f9; border-radius: 8px; padding: 20px; position: relative; }
+.full-width { grid-column: 1 / -1; height: 480px; }
+
+/* --- 就餐趋势文字提示 --- */
+.trend-tips { display: flex; gap: 20px; justify-content: center; margin-top: 25px; border-top: 1px solid #eee; padding-top: 25px; }
+.tip-card { background: #fdf2f2; border-left: 4px solid var(--primary-color); padding: 15px 20px; border-radius: 6px; flex: 1; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+.tip-card h4 { margin-bottom: 10px; color: var(--dark-color); font-weight: bold; }
+.tip-card p { font-size: 0.95rem; color: #666; margin: 0; }
+
+/* --- 列表文章区域样式 --- */
+.article-feed { display: flex; flex-direction: column; gap: 20px; }
+.article-card { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; height: 90px; position: relative; }
+.article-card:hover { height: auto; min-height: 400px; box-shadow: 0 15px 30px rgba(152, 10, 14, 0.1); border-color: var(--primary-color); }
+.article-header { height: 90px; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to right, #fff, #fafafa); z-index: 2; position: relative; }
+.date-badge { background: var(--primary-color); color: #fff; padding: 5px 12px; border-radius: 6px; font-weight: bold; font-size: 0.9rem; text-align: center; line-height: 1.2; min-width: 60px; }
+.date-badge span { font-size: 0.75rem; opacity: 0.9; font-weight: normal; display: block; }
+.article-title { font-size: 1.2rem; font-weight: bold; color: #333; flex-grow: 1; margin: 0 20px; }
+.expand-hint { color: #999; font-size: 0.9rem; }
+
+.article-content { padding: 30px; background: #fcfcfc; opacity: 0; transform: translateY(20px); transition: all 0.5s ease 0.1s; }
+.article-card:hover .article-content { opacity: 1; transform: translateY(0); }
+
+.dish-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+.dish-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s; display: flex; flex-direction: column; }
+.dish-item:hover { transform: translateY(-5px); }
+.dish-img-box { height: 160px; width: 100%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; color: #94a3b8; overflow: hidden; }
+.dish-img-box img { width: 100%; height: 100%; object-fit: cover; }
+.dish-info { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
+.dish-name { font-weight: bold; font-size: 1.1rem; color: #333; margin-bottom: 5px; }
+.dish-meta { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 10px; color: #666; }
+.dish-price { color: var(--primary-color); font-weight: bold; }
+
+.score-badge { float: right; background: var(--primary-color); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
